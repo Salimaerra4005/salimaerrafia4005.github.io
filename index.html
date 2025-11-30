@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salima Errafia - AI Engineer et Web Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables CSS pour le mode clair/sombre */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --background-color: #ffffff;
+            --text-color: #333333;
+            --card-bg: #f8f9fa;
+            --border-color: #dee2e6;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode {
+            --primary-color: #4dabf7;
+            --secondary-color: #adb5bd;
+            --background-color: #1a1a1a;
+            --text-color: #f8f9fa;
+            --card-bg: #2d3748;
+            --border-color: #4a5568;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Reset et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header et Navigation */
+        header {
+            background-color: var(--background-color);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* Section Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0 50px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .hero-text .highlight {
+            color: var(--primary-color);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3);
+        }
+
+        .hero-image {
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+            box-shadow: var(--shadow);
+        }
+
+        /* Sections générales */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        /* Education Section */
+        .education {
+            background-color: var(--card-bg);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-date {
+            min-width: 150px;
+            font-weight: bold;
+            color: var(--primary-color);
+            padding-right: 2rem;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-left: 2rem;
+            border-left: 2px solid var(--primary-color);
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        .timeline-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .institution {
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+
+        /* Certifications Section */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .certification-card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .certification-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .certification-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .certification-card h3 {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            font-size: 1.1rem;
+        }
+
+        .cert-org {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-date {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        .cert-click {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        /* Skills Categories */
+        .skills-categories {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .skills-category {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .skills-category h3 {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skills-category h3 i {
+            color: var(--primary-color);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+        }
+
+        /* About Info */
+        .about-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            min-width: 40px;
+        }
+
+        .info-item h4 {
+            margin-bottom: 0.3rem;
+            color: var(--text-color);
+        }
+
+        .info-item p {
+            color: var(--secondary-color);
+            margin: 0;
+        }
+
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .portfolio-info {
+            padding: 1.5rem;
+        }
+
+        .portfolio-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .portfolio-info p {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .view-project-btn {
+            width: 100%;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--card-bg);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Modal pour les certificats */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        .close:hover {
+            color: var(--primary-color);
+        }
+
+        /* Styles pour les modals des projets */
+        .project-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow-y: auto;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            margin: 2% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 1000px;
+            position: relative;
+            color: var(--text-color);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: var(--text-color);
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+
+        .project-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .project-images img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .project-details h3 {
+            color: var(--primary-color);
+            margin: 1.5rem 0 1rem 0;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .project-details ul {
+            list-style-type: none;
+            padding-left: 1rem;
+        }
+
+        .project-details li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .project-details li:before {
+            content: "▸";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content,
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+            }
+            
+            .timeline-date {
+                padding-right: 0;
+                margin-bottom: 0.5rem;
+            }
+            
+            .timeline-content {
+                padding-left: 1rem;
+                border-left: none;
+                border-top: 2px solid var(--primary-color);
+                padding-top: 1rem;
+            }
+            
+            .timeline-content::before {
+                left: 50%;
+                top: -6px;
+                transform: translateX(-50%);
+            }
+            
+            .skills-list {
+                gap: 0.5rem;
+            }
+            
+            .skill-tag {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+            
+            .certifications-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .info-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .project-images {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 1rem;
+                margin: 5% auto;
+            }
+
+            .close-modal {
+                top: 10px;
+                right: 15px;
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .certification-card,
+            .skills-category {
+                padding: 1.5rem;
+            }
+
+            .modal-content {
+                width: 98%;
+                margin: 2% auto;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Salima Errafia</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Accueil</a></li>
+                    <li><a href="#about">À Propos</a></li>
+                    <li><a href="#education">Formation</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#skills">Compétences</a></li>
+                    <li><a href="#portfolio">Projets</a></li>
+                </ul>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Bonjour, je suis <span class="highlight">Salima Errafia</span></h1>
+                    <h2>Et je suis <span class="highlight">Développeuse IA et Web</span></h2>
+                    <p>
+                        Passionnée par l'intelligence artificielle et le développement web, 
+                        je conçois des solutions innovantes basées sur la data et la créativité.
+                    </p>
+                    <a href="#portfolio" class="btn">Voir mes projets</a>
+                </div>
+                <div class="hero-image">
+                    <img src="assets/salima.jpeg" alt="Salima Errafia" class="profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>À Propos de Moi</h2>
+                <p>Découvrez mon parcours et ma passion pour la technologie</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Développeuse en Intelligence Artificielle & Web</h3>
+                    <p>
+                        Développeuse en informatique, dotée d'une bonne maîtrise des technologies web et des principes de
+                        conception logicielle. Je me distingue par ma capacité à apprendre rapidement, à produire un travail
+                        structuré et à contribuer efficacement au développement de solutions fiables.
+                    </p>
+                    <p>
+                        Motivée et adaptable, j'apporte une réelle valeur ajoutée selon les besoins du poste visé.
+                        Actuellement en Master en Informatique et Intelligence Artificielle, je combine expertise technique
+                        et passion pour l'innovation.
+                    </p>
+                    <a href="#portfolio" class="btn">Voir mes projets</a>
+                </div>
+                <div class="about-info">
+                    <div class="info-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <h4>Formation</h4>
+                            <p>Master en IA et Licence Génie Logiciel</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-briefcase"></i>
+                        <div>
+                            <h4>Expérience</h4>
+                            <p>Projets académiques et Stage virtuel</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-language"></i>
+                        <div>
+                            <h4>Langues</h4>
+                            <p>Arabe (Natif), Français (Courant), Anglais (Intermédiaire)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <div class="section-title">
+                <h2>Formation Académique</h2>
+                <p>Mon parcours éducatif et qualifications</p>
+            </div>
+            <div class="education-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 – Présent</div>
+                    <div class="timeline-content">
+                        <h3>Master en Informatique et Intelligence Artificielle</h3>
+                        <p class="institution">Faculté des Sciences Ibn Tofail, Kénitra</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023-2024</div>
+                    <div class="timeline-content">
+                        <h3>Licence Sciences et Techniques – Option Génie Logiciel</h3>
+                        <p class="institution">Faculté des Sciences et Techniques, Errachidia</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2020-2023</div>
+                    <div class="timeline-content">
+                        <h3>Diplôme D.E.U.S.T en Mathématiques, Informatique et Physique</h3>
+                        <p class="institution">Faculté des Sciences et Techniques, Errachidia</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2019-2020</div>
+                    <div class="timeline-content">
+                        <h3>Baccalauréat Scientifique – Sciences Physiques et Chimiques</h3>
+                        <p class="institution">Lycée Moulay Abdellah Ben Hssein</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Certifications Section -->
+<section id="certifications" class="certifications">
+    <div class="container">
+        <div class="section-title">
+            <h2>Certifications</h2>
+            <p>Mes certifications professionnelles et formations spécialisées</p>
+        </div>
+        <div class="certifications-grid">
+            <!-- Certification 1 -->
+            <div class="certification-card" onclick="openCertificate('assets/img/certi/oracle-cloud.jpg')">
+                <i class="fab fa-oracle"></i>
+                <h3>Oracle Cloud Infrastructure 2025 Certified Foundations Associate</h3>
+                <p class="cert-org">Oracle</p>
+                <p class="cert-date">Septembre 2025</p>
+                <div class="cert-click">Cliquez pour voir le certificat</div>
+            </div>
+            
+            <!-- Certification 2 -->
+            <div class="certification-card" onclick="openCertificate('assets/img/certi/oracle-ai.jpg')">
+                <i class="fab fa-oracle"></i>
+                <h3>Oracle AI Vector Search Certified Professional</h3>
+                <p class="cert-org">Oracle</p>
+                <p class="cert-date">Octobre 2025</p>
+                <div class="cert-click">Cliquez pour voir le certificat</div>
+            </div>
+            
+            <!-- Certification 3 -->
+            <div class="certification-card" onclick="openCertificate('assets/img/certi/cisco-ai.jpg')">
+                <i class="fab fa-cisco"></i>
+                <h3>Introduction to Modern AI</h3>
+                <p class="cert-org">Cisco Networking Academy</p>
+                <p class="cert-date">Octobre 2025</p>
+                <div class="cert-click">Cliquez pour voir le certificat</div>
+            </div>
+            
+            <!-- Certification 4 -->
+            <div class="certification-card" onclick="openCertificate('assets/img/certi/Arks.jpg')">
+                <i class="fas fa-trophy"></i>
+                <h3>Level Up Assignments Completion</h3>
+                <p class="cert-org">Arkx Talent Factory</p>
+                <p class="cert-date">Septembre 2025</p>
+                <div class="cert-click">Cliquez pour voir le certificat</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal pour les certificats -->
+<div id="certificateModal" class="modal">
+    <span class="close" onclick="closeCertificate()">&times;</span>
+    <img class="modal-image" id="certificateImage" src="" alt="Certificat">
+</div>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>Compétences Techniques</h2>
+                <p>Technologies, outils et méthodologies que je maîtrise</p>
+            </div>
+            
+            <div class="skills-categories">
+                <!-- Développement & IA -->
+                <div class="skills-category">
+                    <h3><i class="fas fa-code"></i> Développement & IA</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Matlab</span>
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Keras</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">OpenCV</span>
+                        <span class="skill-tag">RNN</span>
+                        <span class="skill-tag">Deep Learning</span>
+                        <span class="skill-tag">UML</span>
+                    </div>
+                </div>
+
+                <!-- Bases de données -->
+                <div class="skills-category">
+                    <h3><i class="fas fa-database"></i> Bases de données & Administration</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">phpMyAdmin</span>
+                        <span class="skill-tag">XAMPP</span>
+                        <span class="skill-tag">OpenStack</span>
+                    </div>
+                </div>
+
+                <!-- Outils de développement -->
+                <div class="skills-category">
+                    <h3><i class="fas fa-tools"></i> Outils & Environnements</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Jupyter Notebook</span>
+                        <span class="skill-tag">Google Colab</span>
+                        <span class="skill-tag">Eclipse</span>
+                        <span class="skill-tag">IntelliJ</span>
+                        <span class="skill-tag">Android Studio</span>
+                        <span class="skill-tag">Arduino IDE</span>
+                        <span class="skill-tag">Postman</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">MS Office</span>
+                        <span class="skill-tag">MS Project</span>
+                        <span class="skill-tag">LaTeX</span>
+                        <span class="skill-tag">Canva</span>
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Windows</span>
+                        <span class="skill-tag">Linux (Ubuntu)</span>
+                    </div>
+                </div>
+
+                <!-- Méthodologies -->
+                <div class="skills-category">
+                    <h3><i class="fas fa-project-diagram"></i> Méthodologies et Bonnes Pratiques</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">Agile</span>
+                        <span class="skill-tag">Scrum</span>
+                        <span class="skill-tag">Intégration Continue</span>
+                        <span class="skill-tag">Revue de Code</span>
+                        <span class="skill-tag">Bonnes Pratiques</span>
+                    </div>
+                </div>
+
+                <!-- Compétences transverses -->
+                <div class="skills-category">
+                    <h3><i class="fas fa-users"></i> Compétences Transverses</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">Analyse Technique</span>
+                        <span class="skill-tag">Conception de Solutions</span>
+                        <span class="skill-tag">Résolution de Problèmes</span>
+                        <span class="skill-tag">Esprit Critique</span>
+                        <span class="skill-tag">Travail d'Équipe</span>
+                        <span class="skill-tag">Collaboration</span>
+                        <span class="skill-tag">Créativité</span>
+                        <span class="skill-tag">Persévérance</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mes Projets</h2>
+                <p>Découvrez mes réalisations académiques et professionnelles</p>
+            </div>
+            <div class="portfolio-grid">
+                <!-- Stage Virtuel -->
+                <div class="portfolio-card">
+                    <img src="assets/img/port/SV.jpg" alt="Stage Virtuel" class="portfolio-img">
+                    <div class="portfolio-info">
+                        <h3>Stage Virtuel – Python, Data Science et IA appliquée à l'Analyse Financière</h3>
+                        <p>Analyse approfondie de données financières avec Python, Data Science et IA</p>
+                        <button class="btn view-project-btn" onclick="openProjectModal('stage-virtuel')">Voir le projet</button>
+                    </div>
+                </div>
+
+                <!-- Projet 1 -->
+                <div class="portfolio-card">
+                    <img src="assets/img/port/DCH.jpg" alt="Détection Cyberharcèlement" class="portfolio-img">
+                    <div class="portfolio-info">
+                        <h3>Détection de Cyberharcèlement</h3>
+                        <p>Modèle de classification avec régression logistique et interface Streamlit</p>
+                        <button class="btn view-project-btn" onclick="openProjectModal('project1')">Voir le projet</button>
+                    </div>
+                </div>
+
+                <!-- Projet 2 -->
+                <div class="portfolio-card">
+                    <img src="assets/img/port/DT.jpg" alt="Tourisme Intelligent" class="portfolio-img">
+                    <div class="portfolio-info">
+                        <h3>Plateforme Tourisme Intelligent</h3>
+                        <p>Application web pour la région Drâa-Tafilalet avec chatbot intelligent</p>
+                        <button class="btn view-project-btn" onclick="openProjectModal('project2')">Voir le projet</button>
+                    </div>
+                </div>
+
+                <!-- Projet 3 -->
+                <div class="portfolio-card">
+                    <img src="assets/img/port/BCASA.jpg" alt="Trading Intelligent" class="portfolio-img">
+                    <div class="portfolio-info">
+                        <h3>Système de Trading Intelligent</h3>
+                        <p>Agent autonome avec Q-Learning, ARIMA et modèles GARCH</p>
+                        <button class="btn view-project-btn" onclick="openProjectModal('project3')">Voir le projet</button>
+                    </div>
+                </div>
+
+                <!-- Projet 4 -->
+                <div class="portfolio-card">
+                    <img src="assets/img/port/ML.jpg" alt="Analyse Immobilière" class="portfolio-img">
+                    <div class="portfolio-info">
+                        <h3>Analyse Prédictive Immobilière</h3>
+                        <p>Modèles Random Forest, XGBoost et K-Means pour la segmentation du marché</p>
+                        <button class="btn view-project-btn" onclick="openProjectModal('project4')">Voir le projet</button>
+                    </div>
+                </div>
+
+                <!-- Projet 5 -->
+                <div class="portfolio-card">
+                    <img src="assets/img/port/ACKJ.jpg" alt="Gestion Kinésithérapie" class="portfolio-img">
+                    <div class="portfolio-info">
+                        <h3>Application Gestion Kinésithérapie</h3>
+                        <p>JavaFX et MySQL pour la gestion des patients, rendez-vous et paiements</p>
+                        <button class="btn view-project-btn" onclick="openProjectModal('project5')">Voir le projet</button>
+                    </div>
+                </div>
+
+                <!-- Projet 6 - IoT (RÉTABLI) -->
+                <div class="portfolio-card">
+                    <img src="assets/img/port/IOT.jpg" alt="Villes Intelligentes" class="portfolio-img">
+                    <div class="portfolio-info">
+                        <h3>Gestion Espaces Publics IoT</h3>
+                        <p>Système IoT avec ESP32 pour villes intelligentes</p>
+                        <button class="btn view-project-btn" onclick="openProjectModal('project6')">Voir le projet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+    <a href="https://www.linkedin.com/in/salima-errafia-1660762a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" title="LinkedIn">
+        <i class="fab fa-linkedin"></i>
+    </a>
+    <a href="https://github.com/Salimaerra4005" target="_blank" title="GitHub">
+        <i class="fab fa-github"></i>
+    </a>
+    <a href="errafiasalima2020@gmail.com" title="Email">
+        <i class="fas fa-envelope"></i>
+    </a>
+</div>
+            <p>&copy; 2024 Salima Errafia. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Modals pour les projets -->
+    <div id="projectModals">
+        <!-- Modal Stage Virtuel -->
+        <div id="stage-virtuel" class="project-modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeProjectModal('stage-virtuel')">&times;</span>
+                <h2>Stage Virtuel – Python, Data Science et IA appliquée à l'Analyse Financière</h2>
+                <div class="project-details">
+                    <h3>Description</h3>
+                    <p>Réalisation d'une analyse approfondie d'un fichier Excel de 4 254 lignes contenant les données financières de 885 entreprises sur 6 secteurs et 5 années.</p>
+                    
+                    <h3>Technologies utilisées</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">NumPy</span>
+                        <span class="tech-tag">Matplotlib</span>
+                        <span class="tech-tag">Seaborn</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">Data Science</span>
+                        <span class="tech-tag">IA</span>
+                    </div>
+                    
+                    <h3>Réalisations</h3>
+                    <ul>
+                        <li>Application de méthodes issues de Python, de la data science et de l'intelligence artificielle pour analyser les données financières</li>
+                        <li>Exploration, nettoyage et modélisation des données à l'aide des bibliothèques Pandas, NumPy, Matplotlib, Seaborn et Scikit-learn</li>
+                        <li>Développement d'une mini-carte de risque basée sur des ratios financiers (liquidité, marge nette, IS/CA, DSO/DPO)</li>
+                        <li>Calcul de score global et catégorisation du risque (Haut / Moyen / Faible)</li>
+                        <li>Visualisation et restitution des résultats via graphiques et tableau final pour interprétation et recommandations</li>
+                    </ul>
+                    
+                    <h3>Période</h3>
+                    <p>SEPTEMBRE 2025 - EN COURS | À DISTANCE</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Projet 1 - Cyberharcèlement -->
+        <div id="project1" class="project-modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeProjectModal('project1')">&times;</span>
+                <h2>Détection de Cyberharcèlement</h2>
+                <div class="project-details">
+                    <h3>Description</h3>
+                    <p>Développement d'un modèle de machine learning pour détecter automatiquement le cyberharcèlement dans les textes en ligne avec une interface utilisateur intuitive.</p>
+                    
+                    <h3>Technologies utilisées</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">NLTK</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">NumPy</span>
+                    </div>
+                    
+                    <h3>Fonctionnalités</h3>
+                    <ul>
+                        <li>Classification de texte avec régression logistique</li>
+                        <li>Interface utilisateur intuitive avec Streamlit</li>
+                        <li>Traitement du langage naturel (NLP)</li>
+                        <li>Analyse de sentiment avancée</li>
+                        <li>Précision de classification: 92%</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Projet 2 - Tourisme Intelligent -->
+        <div id="project2" class="project-modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeProjectModal('project2')">&times;</span>
+                <h2>Plateforme Tourisme Intelligent</h2>
+                <div class="project-details">
+                    <h3>Description</h3>
+                    <p>Application web complète pour promouvoir le tourisme dans la région Drâa-Tafilalet avec un chatbot intelligent pour les recommendations personnalisées.</p>
+
+                    <h3>Technologies utilisées</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">HTML/CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">OpenAI API</span>
+                    </div>
+                    
+                    <h3>Fonctionnalités</h3>
+                    <ul>
+                        <li>Recherche de destinations touristiques</li>
+                        <li>Chatbot intelligent pour recommendations</li>
+                        <li>Système de réservation intégré</li>
+                        <li>Cartes interactives</li>
+                        <li>Gestion multi-langues</li>
+                        <li>Système de notation et avis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Projet 3 - Trading Intelligent -->
+        <div id="project3" class="project-modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeProjectModal('project3')">&times;</span>
+                <h2>Système de Trading Intelligent</h2>
+                <div class="project-details">
+                    <h3>Description</h3>
+                    <p>Agent autonome de trading utilisant l'apprentissage par renforcement et l'analyse de séries temporelles pour prendre des décisions d'investissement.</p>
+                    
+                    <h3>Technologies utilisées</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Q-Learning</span>
+                        <span class="tech-tag">ARIMA</span>
+                        <span class="tech-tag">GARCH</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">Pandas</span>
+                    </div>
+                    
+                    <h3>Fonctionnalités</h3>
+                    <ul>
+                        <li>Agent autonome avec Q-Learning</li>
+                        <li>Prédiction de séries temporelles avec ARIMA</li>
+                        <li>Modélisation de volatilité avec GARCH</li>
+                        <li>Analyse technique automatique</li>
+                        <li>Backtesting des stratégies</li>
+                        <li>Rendement moyen: +15% par an</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Projet 4 - Analyse Immobilière -->
+        <div id="project4" class="project-modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeProjectModal('project4')">&times;</span>
+                <h2>Analyse Prédictive Immobilière</h2>
+                <div class="project-details">
+                    <h3>Description</h3>
+                    <p>Analyse approfondie du marché immobilier marocain avec modèles prédictifs et segmentation pour identifier les tendances et estimer la valeur des biens.</p>
+                    
+                    <h3>Technologies utilisées</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Random Forest</span>
+                        <span class="tech-tag">XGBoost</span>
+                        <span class="tech-tag">K-Means</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Matplotlib</span>
+                    </div>
+                    
+                    <h3>Fonctionnalités</h3>
+                    <ul>
+                        <li>Web scraping des données immobilières</li>
+                        <li>Modélisation prédictive avec Random Forest (R²: 0.79)</li>
+                        <li>Segmentation du marché avec K-Means (5 clusters)</li>
+                        <li>Analyse exploratoire des données</li>
+                        <li>Visualisation interactive des résultats</li>
+                        <li>Détection des valeurs aberrantes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Projet 5 - Gestion Kinésithérapie -->
+        <div id="project5" class="project-modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeProjectModal('project5')">&times;</span>
+                <h2>Application Gestion Kinésithérapie</h2>
+                <div class="project-details">
+                    <h3>Description</h3>
+                    <p>Application Java complète pour la gestion administrative d'un centre de kinésithérapie avec interface intuitive et base de données relationnelle.</p>
+                    
+                    <h3>Technologies utilisées</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">JavaFX</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">Scene Builder</span>
+                        <span class="tech-tag">XAMPP</span>
+                        <span class="tech-tag">UML</span>
+                    </div>
+                    
+                    <h3>Fonctionnalités</h3>
+                    <ul>
+                        <li>Gestion des patients (ajout, modification, consultation)</li>
+                        <li>Planification des rendez-vous</li>
+                        <li>Gestion des paiements et facturation</li>
+                        <li>Administration des salles et équipements</li>
+                        <li>Fiches médicales électroniques</li>
+                        <li>Système d'authentification sécurisé</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Projet 6 - IoT Villes Intelligentes (RÉTABLI) -->
+        <div id="project6" class="project-modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeProjectModal('project6')">&times;</span>
+                <h2>Gestion Espaces Publics IoT</h2>
+                <div class="project-details">
+                    <h3>Description</h3>
+                    <p>Système IoT intelligent pour la surveillance et l'optimisation des espaces publics dans les villes intelligentes avec collecte de données en temps réel.</p>
+                    
+                    <h3>Technologies utilisées</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">ESP32-S2</span>
+                        <span class="tech-tag">Arduino</span>
+                        <span class="tech-tag">Capteurs IoT</span>
+                        <span class="tech-tag">ThingSpeak</span>
+                        <span class="tech-tag">Wi-Fi</span>
+                        <span class="tech-tag">C++</span>
+                    </div>
+                    
+                    <h3>Composants</h3>
+                    <ul>
+                        <li>Capteur PIR (détection présence humaine)</li>
+                        <li>Capteur DHT22 (température et humidité)</li>
+                        <li>Capteur MQ135 (qualité de l'air)</li>
+                        <li>Écran LCD I2C (affichage local)</li>
+                        <li>LEDs d'alerte (notification visuelle)</li>
+                        <li>Plateforme cloud ThingSpeak</li>
+                    </ul>
+                    
+                    <h3>Fonctionnalités</h3>
+                    <ul>
+                        <li>Surveillance environnementale en temps réel</li>
+                        <li>Détection d'occupation des espaces</li>
+                        <li>Alertes automatiques (pollution, présence)</li>
+                        <li>Visualisation des données sur dashboard</li>
+                        <li>Maintenance proactive des infrastructures</li>
+                        <li>Réduction des coûts opérationnels</li>
+                    </ul>
+                    
+                    <h3>Résultats</h3>
+                    <ul>
+                        <li>Collecte données toutes les 20 secondes</li>
+                        <li>Amélioration de la sécurité publique</li>
+                        <li>Optimisation de la maintenance (30% d'économie)</li>
+                        <li>Meilleure satisfaction des citoyens</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle Dark/Light Mode
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                // Sauvegarder le thème dans le localStorage
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Charger le thème sauvegardé
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'var(--card-bg)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.backgroundColor = 'var(--background-color)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observer les éléments à animer
+        document.addEventListener('DOMContentLoaded', () => {
+            const elementsToAnimate = document.querySelectorAll('.skill-card, .portfolio-card, .about-content, .certification-card');
+            elementsToAnimate.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+
+        // Animation pour la timeline de l'éducation
+        const timelineItems = document.querySelectorAll('.timeline-item');
+
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Observer les éléments de la timeline
+        document.addEventListener('DOMContentLoaded', () => {
+            timelineItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-20px)';
+                item.style.transition = `opacity 0.6s ease ${index * 0.2}s, transform 0.6s ease ${index * 0.2}s`;
+                timelineObserver.observe(item);
+            });
+        });
+
+        // Fonctions pour les certificats
+        function openCertificate(imageSrc) {
+            const modal = document.getElementById('certificateModal');
+            const modalImage = document.getElementById('certificateImage');
+            
+            modalImage.src = imageSrc;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Empêche le scroll
+        }
+
+        function closeCertificate() {
+            const modal = document.getElementById('certificateModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Réactive le scroll
+        }
+
+        // Fermer le modal des certificats en cliquant en dehors de l'image
+        document.getElementById('certificateModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCertificate();
+            }
+        });
+
+        // Fonctions pour les modals des projets
+        function openProjectModal(projectId) {
+            const modal = document.getElementById(projectId);
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Empêche le scroll
+        }
+
+        function closeProjectModal(projectId) {
+            const modal = document.getElementById(projectId);
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Réactive le scroll
+        }
+
+        // Fermer les modals des projets en cliquant en dehors
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('project-modal')) {
+                e.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Fermer tous les modals avec la touche Echap
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                // Fermer le modal des certificats
+                closeCertificate();
+                
+                // Fermer tous les modals des projets
+                const projectModals = document.querySelectorAll('.project-modal');
+                projectModals.forEach(modal => {
+                    modal.style.display = 'none';
+                });
+                
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Animation des éléments des skills categories
+        const skillsCategories = document.querySelectorAll('.skills-category');
+
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 200);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Observer les categories de compétences
+        document.addEventListener('DOMContentLoaded', () => {
+            skillsCategories.forEach(category => {
+                category.style.opacity = '0';
+                category.style.transform = 'translateY(30px)';
+                category.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                skillsObserver.observe(category);
+            });
+        });
+
+        // Animation des info-items
+        const infoItems = document.querySelectorAll('.info-item');
+
+        const infoObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }, index * 150);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Observer les info-items
+        document.addEventListener('DOMContentLoaded', () => {
+            infoItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-20px)';
+                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                infoObserver.observe(item);
+            });
+        });
+
+        // Gestion du chargement des images avec lazy loading
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img[data-src]');
+            
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.getAttribute('data-src');
+                        img.removeAttribute('data-src');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+        });
+
+        // Amélioration de la navigation active
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= (sectionTop - 100)) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Mettre à jour la navigation active au scroll
+        window.addEventListener('scroll', updateActiveNav);
+
+        // Initialiser la navigation active au chargement
+        document.addEventListener('DOMContentLoaded', updateActiveNav);
+
+        // Console log de bienvenue
+        console.log('🚀 Portfolio de Salima Errafia chargé avec succès !');
+        console.log('💻 Développeuse IA & Web passionnée');
+        console.log('📧 Contact: salima.errafia@email.com');
+    </script>
+</body>
+</html>
